@@ -19,5 +19,5 @@ class DetalleVenta:
         for descuento in pDescuentos:
             monto = descuento.calcularMonto(self.Cantidad, self.PrecioUnitario)
             if monto > mejor:
-                monto = mejor
+                mejor = monto
         self.DescuentoAplicado = mejor
