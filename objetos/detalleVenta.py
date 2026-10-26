@@ -6,7 +6,7 @@ class DetalleVenta:
         self.DescuentoAplicado = pDescuentoAplicado
 
     def verDatos(self):
-        print("Producto: ",self.Producto)
+        print("Producto: ",self.Producto.descripcion)
         print("Cantidad: ",self.Cantidad)
         print("PrecioUnitario: ",self.PrecioUnitario)
         print("DescuentoAplicado: ",self.DescuentoAplicado)
