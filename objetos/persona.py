@@ -5,10 +5,8 @@ class Persona:
         self.Apellido = pApellido
         self.Dni = pDni
         self.FechaNacimiento = pFechaNacimiento
+    def obtenerDatos(self):
+        return str(self.Id) + " - " + self.Nombre + " - " + self.Apellido + " - " + self.Dni + " - " + str(self.FechaNacimiento)
+
     def verDatos(self):
-        print("Id: ",self.Id)
-        print("Nombre: ",self.Nombre)
-        print("Apellido: ",self.Apellido)
-        print("DNI: ",self.Dni)
-        print("Fecha de Nacimiento: ",self.FechaNacimiento)
-        
+        print(self.obtenerDatos())
