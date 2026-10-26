@@ -9,6 +9,7 @@ class Descuento:
     def verDatos(self):
         print("Id: ",self.Id)
         print("Descripcion: ",self.Descripcion)
+        print("Marca: ",self.Marca)
         print("Categoria: ",self.Categoria)
         print("Tipo: ",self.Tipo)
         print("Valor: ",self.Valor)
