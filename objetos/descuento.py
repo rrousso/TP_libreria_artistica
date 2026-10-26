@@ -18,9 +18,9 @@ class Descuento:
 
     def calcularMonto(self, pCantidad, pPrecioUnitario):
         montoADescontar = 0
-        if self.Tipo == "DOS_POR_UNO":
+        if self.Tipo == TipoDescuento.DOS_POR_UNO:
             totalUnidades = pCantidad // 2
             montoADescontar = totalUnidades * pPrecioUnitario
-        elif self.Tipo == "PORCENTAJE":
+        elif self.Tipo == TipoDescuento.PORCENTAJE:
             montoADescontar = pCantidad * pPrecioUnitario * self.Valor / 100
         return montoADescontar

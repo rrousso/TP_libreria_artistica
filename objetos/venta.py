@@ -1,5 +1,3 @@
-from objetos.tipoDescuento import TipoDescuento
-
 class Venta:
     def __init__(self, pId, pFecha, pCliente, pVendedor):
         self.Id = pId
@@ -19,10 +17,9 @@ class Venta:
         
         for detalle in self.Detalles:
             detalle.verDatos()
-
-        print("Descuentos:")
-        for descuento in self.Descuentos:
-            descuento.verDatos()
+            
+        print("Subtotal: ",self.Subtotal)
+        print("Total: ",self.Total)
 
     def calcularSubtotal(self):
         subtotal = 0
@@ -32,7 +29,7 @@ class Venta:
 
     def calcularTotal(self):
         total = 0
-        for detalle in sef.Detalles:
+        for detalle in self.Detalles:
             total += detalle.calcularSubtotal()
         return total
     
