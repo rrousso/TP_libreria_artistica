@@ -1,7 +1,7 @@
 from objetos.cliente import Cliente
 from datos.clienteData import guardarCliente, traerClientes, traerCliente, buscarClientes, modificarCliente, eliminarCliente, existeDniCliente
 from datos.ventaData import clienteTieneVentas
-from presentacion.validaciones import pedirEntero, pedirFecha
+from presentacion.validaciones import pedirEntero, pedirFecha, pedirEnteroOVacio
 
 def menuClientes():
     while True:
@@ -27,7 +27,7 @@ def menuClientes():
         elif opcion == "5":
             menuModificarCliente()
         elif opcion == "6":
-            menuElminarCliente()
+            menuEliminarCliente()
         elif opcion == "7":
             print("\nVolviendo a Menu Principal")
             break    
@@ -86,12 +86,12 @@ def menuModificarCliente():
         if apellido != "":
             cliente.Apellido = apellido
 
-        dni = pedirEntero("Dni (" + cliente.Dni + "):")
-        if existeDniCliente(dni):
-            print("DNI ya existe en base de datos y debe ser un dato ùnico.")
-            dni == ""
-        if dni != "":
-            cliente.Dni = dni
+        dni = input("Dni (" + cliente.Dni + "):")
+        if dni != "" and dni != cliente.Dni:
+            if existeDniCliente(dni):
+                print("Ese DNI ya existe, no se modifica.")
+            else:
+                cliente.Dni = dni
 
         if cliente.FechaNacimiento == None:
             textoFechaNac = "Sin Dato"
@@ -102,12 +102,12 @@ def menuModificarCliente():
         if fechaNac != None:
             cliente.FechaNacimiento = fechaNac
         
-        puntos = input("PuntosAcumulados (" + str(cliente.PuntosAcumulados) + "):")
-        if puntos != "":
+        puntos = pedirEnteroOVacio("PuntosAcumulados (" + str(cliente.PuntosAcumulados) + "):")
+        if puntos != None:
             cliente.PuntosAcumulados = puntos
 
         modificarCliente(cliente.Id, cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.FechaNacimiento, cliente.PuntosAcumulados)
-        print("Cliente Modificado:" + cliente.verDatos())
+        print("Cliente Modificado:" + cliente.obtenerDatos())
 
 
 def menuEliminarCliente():

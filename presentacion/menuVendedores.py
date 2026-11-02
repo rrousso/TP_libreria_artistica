@@ -27,7 +27,7 @@ def menuVendedores():
         elif opcion == "5":
             menuModificarVendedor()
         elif opcion == "6":
-            menuElminarVendedor()
+            menuEliminarVendedor()
         elif opcion == "7":
             print("\nVolviendo a Menu Principal")
             break    
@@ -38,6 +38,10 @@ def menuAgregarVendedor():
     nombre = input("Ingrese el Nombre: ")
     apellido = input("Ingrese el Apellido: ")
     dni = input("Ingrese el Dni: ")
+    while existeDniVendedor(dni):
+        print("\nEl DNI ya existe en la base de datos")
+        dni = input("Ingrese el Dni: ")
+
     fechaNac = pedirFecha("Ingrese fecha de nacimiento:")
     cargo = input("Ingrese el Cargo: ")
     vendedor = Vendedor(None, nombre, apellido, dni, fechaNac, cargo)
@@ -89,11 +93,12 @@ def menuModificarVendedor():
         
         dni = pedirEntero("Dni (" + vendedor.Dni + "):")
         
-        if existeDniVendedor(dni):
-            print("DNI ya existe en base de datos y debe ser un dato ùnico.")
-            dni == ""
-        if dni != "":
-            vendedor.Dni = dni
+        dni = input("Dni (" + vendedor.Dni + "):")
+        if dni != "" and dni != vendedor.Dni:
+            if existeDniVendedor(dni):
+                print("Ese DNI ya existe, no se modifica.")
+            else:
+                vendedor.Dni = dni
 
         if vendedor.FechaNacimiento == None:
             textoFechaNac = "Sin Dato"
@@ -109,7 +114,7 @@ def menuModificarVendedor():
             vendedor.Cargo = cargo
 
         modificarVendedor(vendedor.Id, vendedor.Nombre, vendedor.Apellido, vendedor.Dni, vendedor.FechaNacimiento, vendedor.Cargo)
-        print("Vendedor Modificado:" + vendedor.verDatos())
+        print("Vendedor Modificado:" + vendedor.obtenerDatos())
 
 
 def menuEliminarVendedor():
