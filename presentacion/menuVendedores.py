@@ -43,7 +43,7 @@ def menuAgregarVendedor():
         dni = pedirTexto("Ingrese el Dni: ")
 
     fechaNac = pedirFecha("Ingrese fecha de nacimiento:")
-    cargo = input("Ingrese el Cargo: ")
+    cargo = pedirTexto("Ingrese el Cargo: ")
     vendedor = Vendedor(None, nombre, apellido, dni, fechaNac, cargo)
     guardarVendedor(vendedor.Nombre, vendedor.Apellido, vendedor.Dni, vendedor.FechaNacimiento, vendedor.Cargo)
     print("vendedor guardado.")
@@ -66,8 +66,8 @@ def menuMostrarVendedor():
         vendedor.verDatos()
 
 def menuBuscarVendedores():
-    idVendedor = input("Ingrese Nombre, apellido o DNI a buscar: ")
-    vendedores = buscarVendedores(idVendedor)
+    textoBusqueda = input("Ingrese Nombre, apellido o DNI a buscar: ")
+    vendedores = buscarVendedores(textoBusqueda)
     if len(vendedores) == 0:
         print("\nNo se encontraron vendedores.")
     else:

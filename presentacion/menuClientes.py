@@ -76,8 +76,8 @@ def menuBuscarClientes():
             cli.verDatos()
 
 def menuModificarCliente():
-    idCliente = pedirEntero("Ingrese Id de usuario a modificar: ")
-    cliente = traerCliente(idCliente)
+    textoBusqueda = pedirEntero("Ingrese Id de usuario a modificar: ")
+    cliente = traerCliente(textoBusqueda)
     if cliente is None:
         print("No existe un cliente con ese id.")
     else:
