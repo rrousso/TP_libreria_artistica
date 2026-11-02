@@ -1,9 +1,9 @@
 from objetos.producto import Producto
 from datos.productoData import guardarProducto, traerProductos, traerProducto, buscarProductos, modificarProducto, eliminarProducto
-from datos.ventaData import productoTieneVentas
-from presentacion.validaciones import pedirEntero, pedirFecha, pedirEnteroOVacio, pedirTexto, pediDecimal, pedirDecimalOVacio
+from datos.detalleVentaData import productoTieneVentas
+from presentacion.validaciones import pedirEntero, pedirEnteroOVacio, pedirTexto, pedirDecimal, pedirDecimalOVacio
 
-def menuClientes():
+def menuProductos():
     while True:
         print("\nMenú de operaciones de Productos:")
         print("1. Agregar productos")
@@ -39,12 +39,12 @@ def menuAgregarProducto():
     marca = input("Ingrese marca: ")
     categoria = input("Ingrese categoria: ")
     presentacion = input("Ingrese presentación: ")
-    unidades = pedirEntero("Ingrese unidades por paquete:")
-    precio = pediDecimal("Ingrese precio")
-    stock = pedirEntero("Ingrese cantidad de Stock disponible:")
+    unidades = pedirEntero("Ingrese unidades por paquete: ")
+    precio = pedirDecimal("Ingrese precio: ")
+    stock = pedirEntero("Ingrese cantidad de Stock disponible: ")
 
     producto = Producto(None, descripcion, marca, categoria, presentacion, unidades, precio, stock)
-    guardarProducto(producto.Descripcion, producto.Marca, producto.Categoria, producto.Presentacion, producto.Unidades, producto.Precio, producto.Stock)
+    guardarProducto(producto.Descripcion, producto.Marca, producto.Categoria, producto.Presentacion, producto.UnidadesPorPaquete, producto.Precio, producto.Stock)
     print("Poducto guardado.")
 
 def menuMostrarProductos():
@@ -76,7 +76,7 @@ def menuBuscarProductos():
             pro.verDatosCompletos()
 
 def menuModificarProducto():
-    idProducto = pedirEntero("Ingrese Id de usuario a modificar: ")
+    idProducto = pedirEntero("Ingrese Id de producto a modificar: ")
     producto = traerProducto(idProducto)
     if producto is None:
         print("No existe un producto con ese id.")
@@ -98,26 +98,26 @@ def menuModificarProducto():
         if presentacion != "":
             producto.Presentacion = presentacion
 
-        unidades = pedirEnteroOVacio("Unidades (" + producto.Unidades + "):")
+        unidades = pedirEnteroOVacio("Unidades (" + str(producto.UnidadesPorPaquete) + "):")
         if unidades != None:
-            producto.Unidades = unidades
+            producto.UnidadesPorPaquete = unidades
 
-        precio = pedirDecimalOVacio("Unidades (" + producto.Precio + "):")
+        precio = pedirDecimalOVacio("Precio (" + str(producto.Precio) + "):")
         if precio != None:
             producto.Precio = precio
 
-        stock = pedirEnteroOVacio("Stock (" + producto.Stock + "):")
+        stock = pedirEnteroOVacio("Stock (" + str(producto.Stock) + "):")
         if stock != None:
             producto.Stock = stock
 
-        modificarProducto(producto.Descripcion, producto.Marca, producto.Categoria, producto.Presentacion, producto.Unidades, producto.Precio, producto.Stock)
+        modificarProducto(producto.Id, producto.Descripcion, producto.Marca, producto.Categoria, producto.Presentacion, producto.UnidadesPorPaquete, producto.Precio, producto.Stock)
         print("Producto Modificado:")
         producto.verDatosCompletos()
 
 
 def menuEliminarProducto():
     idProducto = pedirEntero("Ingrese Id: ")
-    producto = traerProductos(idProducto)
+    producto = traerProducto(idProducto)
     if producto is None:
         print("\nNo existe un producto con ese id.")
     elif productoTieneVentas(idProducto):

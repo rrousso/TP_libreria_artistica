@@ -4,12 +4,14 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from presentacion.menuClientes import menuClientes
 from presentacion.menuVendedores import menuVendedores
+from presentacion.menuProductos import menuProductos
 
 def menu():
     while True:
         print("\nMenú principal de operaciones de gestión:")
         print("1. Clientes")
         print("2. Vendedores")
+        print("3. Productos")
         print("6. Salir")
 
         opcion = input("Ingrese una opción (1-6): ")
@@ -18,6 +20,8 @@ def menu():
             menuClientes()
         elif opcion == "2":
             menuVendedores()
+        elif opcion == "3":
+            menuProductos()
         elif opcion == "6":
             print("\nSaliendo de la aplicación")
             break
