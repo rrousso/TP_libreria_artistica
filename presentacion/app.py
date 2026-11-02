@@ -4,7 +4,7 @@ from datetime import datetime, date
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from objetos.cliente import Cliente
-from datos.clienteData import guardarCliente, traerClientes
+from datos.clienteData import guardarCliente, traerClientes, traerCliente, buscarClientes
 
 def menu():
     while True:
@@ -38,7 +38,7 @@ def menuClientes():
         elif opcion == "2":
             menuMostrarClientes()
         elif opcion == "3":
-            menuMostrarstrarCliente()
+            menuMostrarCliente()
         elif opcion == "4":
             menuBuscarClientes()
         elif opcion == "5":
@@ -51,7 +51,7 @@ def menuAgregarCliente():
     nombre = input("Ingrese el Nombre: ")
     apellido = input("Ingrese el Apellido: ")
     dni = input("Ingrese el Dni: ")
-    fechaNac = pedirFecha("Ingrese fecha de nacimiento")
+    fechaNac = pedirFecha("Ingrese fecha de nacimiento:")
     cliente = Cliente(None, nombre, apellido, dni, fechaNac, 0)
     guardarCliente(cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.FechaNacimiento)
     print("Cliente guardado.")
@@ -63,6 +63,34 @@ def menuMostrarClientes():
     for cli in clientes:
         cli.verDatos()
 
+def menuMostrarCliente():
+    idCliente = pedirEntero("Ingrese Id: ")
+    cliente = traerCliente(idCliente)
+    if cliente is None:
+        print("No existe un cliente con ese id.")
+    else:
+        print("\nDatos de Cliente:")
+        print("\nId - Nombre - Apellido - DNI - Fecha Nacimiento - Puntos Acumulados")
+        cliente.verDatos()
+
+def menuBuscarClientes():
+    idCliente = input("Ingrese Nombre, apellido o DNI a buscar: ")
+    clientes = buscarClientes(idCliente)
+    if clientes is None:
+        print("No se encontraron clientes.")
+    else:
+        print("\nLista de Clientes encontrados:")
+        print("\nId - Nombre - Apellido - DNI - Fecha Nacimiento - Puntos Acumulados")
+        for cli in clientes:
+                cli.verDatos()
+
+def pedirEntero(pMensaje):
+    while True:
+        texto = input(pMensaje)
+        try:
+            return int(texto)
+        except ValueError:
+            print("Debe ingresar un número.")
 
 def pedirFecha(pMensaje):
     while True:

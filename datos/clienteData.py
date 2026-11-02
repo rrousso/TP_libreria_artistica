@@ -23,3 +23,15 @@ def traerClientes():
         cliente = Cliente(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5])
         clientes.append(cliente)
     return clientes
+
+def traerCliente(pIdCliente):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, nombre, apellido, dni, fecha_nacimiento, puntos_acumulados FROM clientes WHERE id = %s",(pIdCliente,))
+    fila = cursor.fetchone()
+    cursor.close()
+    conn.close()
+
+    if fila is None:
+        return None
+    return Cliente(fila[0], fila[1], fila[2], fila[3], fila[4], fila[5])
