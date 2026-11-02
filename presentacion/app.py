@@ -1,6 +1,5 @@
 import sys
 import os
-from datetime import datetime, date
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from presentacion.menuClientes import menuClientes
@@ -24,5 +23,5 @@ def menu():
             break
         else:
             print("\nOpción inválida")
-            
+
 menu()

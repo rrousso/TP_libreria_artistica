@@ -1,5 +1,12 @@
 from datetime import datetime, date
 
+def pedirTexto(pMensaje):
+    while True:
+        texto = input(pMensaje).strip()
+        if texto != "":
+            return texto
+        print("\nEl campo no puede estar vacío.")
+
 def pedirEntero(pMensaje):
     while True:
         texto = input(pMensaje)

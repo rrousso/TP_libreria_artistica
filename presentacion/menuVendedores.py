@@ -1,7 +1,7 @@
 from objetos.vendedor import Vendedor
 from datos.vendedorData import guardarVendedor, traerVendedores, traerVendedor, buscarVendedores, eliminarVendedor, modificarVendedor, existeDniVendedor
 from datos.ventaData import vendedorTieneVentas
-from presentacion.validaciones import pedirEntero, pedirFecha
+from presentacion.validaciones import pedirEntero, pedirFecha, pedirTexto
 
 def menuVendedores():
     while True:
@@ -35,12 +35,12 @@ def menuVendedores():
             print("\nOpción inválida")
 
 def menuAgregarVendedor():
-    nombre = input("Ingrese el Nombre: ")
-    apellido = input("Ingrese el Apellido: ")
-    dni = input("Ingrese el Dni: ")
+    nombre = pedirTexto("Ingrese el Nombre: ")
+    apellido = pedirTexto("Ingrese el Apellido: ")
+    dni = pedirTexto("Ingrese el Dni: ")
     while existeDniVendedor(dni):
         print("\nEl DNI ya existe en la base de datos")
-        dni = input("Ingrese el Dni: ")
+        dni = pedirTexto("Ingrese el Dni: ")
 
     fechaNac = pedirFecha("Ingrese fecha de nacimiento:")
     cargo = input("Ingrese el Cargo: ")
@@ -77,7 +77,7 @@ def menuBuscarVendedores():
             ven.verDatos()
 
 def menuModificarVendedor():
-    idVendedor = input("Ingrese Id de usuario a modificar: ")
+    idVendedor = pedirEntero("Ingrese Id de usuario a modificar: ")
     vendedor = traerVendedor(idVendedor)
     if vendedor is None:
         print("No existe un vendedor con ese id.")

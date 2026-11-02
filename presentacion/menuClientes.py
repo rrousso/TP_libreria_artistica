@@ -1,7 +1,7 @@
 from objetos.cliente import Cliente
 from datos.clienteData import guardarCliente, traerClientes, traerCliente, buscarClientes, modificarCliente, eliminarCliente, existeDniCliente
 from datos.ventaData import clienteTieneVentas
-from presentacion.validaciones import pedirEntero, pedirFecha, pedirEnteroOVacio
+from presentacion.validaciones import pedirEntero, pedirFecha, pedirEnteroOVacio, pedirTexto
 
 def menuClientes():
     while True:
@@ -35,12 +35,12 @@ def menuClientes():
             print("\nOpción inválida")
 
 def menuAgregarCliente():
-    nombre = input("Ingrese el Nombre: ")
-    apellido = input("Ingrese el Apellido: ")
-    dni = input("Ingrese el Dni: ")
+    nombre = pedirTexto("Ingrese el Nombre: ")
+    apellido = pedirTexto("Ingrese el Apellido: ")
+    dni = pedirTexto("Ingrese el Dni: ")
     while existeDniCliente(dni):
         print("\nEl DNI ya existe en la base de datos")
-        dni = input("Ingrese el Dni: ")
+        dni = pedirTexto("Ingrese el Dni: ")
 
     fechaNac = pedirFecha("Ingrese fecha de nacimiento:")
     cliente = Cliente(None, nombre, apellido, dni, fechaNac, 0)
@@ -76,7 +76,7 @@ def menuBuscarClientes():
             cli.verDatos()
 
 def menuModificarCliente():
-    idCliente = input("Ingrese Id de usuario a modificar: ")
+    idCliente = pedirEntero("Ingrese Id de usuario a modificar: ")
     cliente = traerCliente(idCliente)
     if cliente is None:
         print("No existe un cliente con ese id.")
