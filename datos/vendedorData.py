@@ -66,3 +66,11 @@ def eliminarVendedor(pIdVendedor):
     cursor.close()
     conn.close()
 
+def existeDniCliente(pDniVendedor):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM vendedores WHERE dni = %s",(pDniVendedor,))
+    fila = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return fila[0] > 0

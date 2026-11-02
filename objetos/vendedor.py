@@ -5,5 +5,5 @@ class Vendedor(Persona):
         super().__init__(pId, pNombre, pApellido, pDni, pFechaNac)
         self.Cargo = pCargo
     def obtenerDatos(self):
-            return str(self.Id) + " - " + self.Nombre + " - " + self.Apellido + " - " + self.Dni + " - " + str(self.FechaNacimiento) + " - " + str(self.Cargo) 
+        return super().obtenerDatos() + " - " + str(self.Cargo) 
         

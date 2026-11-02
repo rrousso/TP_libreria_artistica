@@ -5,4 +5,4 @@ class Cliente(Persona):
         super().__init__(pId, pNombre, pApellido, pDni, pFechaNac)
         self.PuntosAcumulados = pPuntosAcumulados
     def obtenerDatos(self):
-        return str(self.Id) + " - " + self.Nombre + " - " + self.Apellido + " - " + self.Dni + " - " + str(self.FechaNacimiento) + " - " + str(self.PuntosAcumulados) 
+        return super().obtenerDatos() + " - " + str(self.PuntosAcumulados) 

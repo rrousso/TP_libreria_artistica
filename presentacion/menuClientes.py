@@ -1,5 +1,5 @@
 from objetos.cliente import Cliente
-from datos.clienteData import guardarCliente, traerClientes, traerCliente, buscarClientes, modificarCliente, eliminarCliente
+from datos.clienteData import guardarCliente, traerClientes, traerCliente, buscarClientes, modificarCliente, eliminarCliente, existeDniCliente
 from datos.ventaData import clienteTieneVentas
 from presentacion.validaciones import pedirEntero, pedirFecha
 
@@ -86,11 +86,19 @@ def menuModificarCliente():
         if apellido != "":
             cliente.Apellido = apellido
 
-        dni = input("Dni (" + cliente.Dni + "):")
+        dni = pedirEntero("Dni (" + cliente.Dni + "):")
+        if existeDniCliente(dni):
+            print("DNI ya existe en base de datos y debe ser un dato ùnico.")
+            dni == ""
         if dni != "":
             cliente.Dni = dni
 
-        fechaNac = pedirFecha("Fecha de nacimiento (" + cliente.FechaNacimiento.strftime("%d/%m/%Y") + "):")
+        if cliente.FechaNacimiento == None:
+            textoFechaNac = "Sin Dato"
+        else:
+            textoFechaNac = cliente.FechaNacimiento.strftime("%d/%m/%Y")
+
+        fechaNac = pedirFecha("Fecha de nacimiento (" + textoFechaNac + "):")
         if fechaNac != None:
             cliente.FechaNacimiento = fechaNac
         
@@ -99,9 +107,10 @@ def menuModificarCliente():
             cliente.PuntosAcumulados = puntos
 
         modificarCliente(cliente.Id, cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.FechaNacimiento, cliente.PuntosAcumulados)
+        print("Cliente Modificado:" + cliente.verDatos())
 
 
-def menuElminarCliente():
+def menuEliminarCliente():
     idCliente = pedirEntero("Ingrese Id: ")
     cliente = traerCliente(idCliente)
     if cliente is None:

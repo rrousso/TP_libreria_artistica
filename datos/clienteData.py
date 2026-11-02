@@ -66,3 +66,12 @@ def eliminarCliente(pIdCliente):
     conn.commit()
     cursor.close()
     conn.close()
+
+def existeDniCliente(pDniCliente):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM clientes WHERE dni = %s",(pDniCliente,))
+    fila = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return fila[0] > 0

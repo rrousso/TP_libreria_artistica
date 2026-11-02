@@ -10,10 +10,10 @@ def clienteTieneVentas(pIdCliente):
     conn.close()
     return fila[0] > 0
 
-def vendedorTieneVentas(pIdVendedor):
+def clienteTieneVentas(pIdCliente):
     conn = conectar()
     cursor = conn.cursor()
-    cursor.execute("SELECT COUNT(*) FROM ventas WHERE vendedor_id = %s",(pIdVendedor,))
+    cursor.execute("SELECT COUNT(*) FROM ventas WHERE cliente_id = %s",(pIdCliente,))
     fila = cursor.fetchone()
     cursor.close()
     conn.close()

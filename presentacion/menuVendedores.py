@@ -1,5 +1,5 @@
 from objetos.vendedor import Vendedor
-from datos.vendedorData import guardarVendedor, traerVendedores, traerVendedor, buscarVendedores, eliminarVendedor, modificarVendedor
+from datos.vendedorData import guardarVendedor, traerVendedores, traerVendedor, buscarVendedores, eliminarVendedor, modificarVendedor, existeDniVendedor
 from datos.ventaData import vendedorTieneVentas
 from presentacion.validaciones import pedirEntero, pedirFecha
 
@@ -86,12 +86,21 @@ def menuModificarVendedor():
         apellido = input("Apellido (" + vendedor.Apellido + "):")
         if apellido != "":
             vendedor.Apellido = apellido
-
-        dni = input("Dni (" + vendedor.Dni + "):")
+        
+        dni = pedirEntero("Dni (" + vendedor.Dni + "):")
+        
+        if existeDniVendedor(dni):
+            print("DNI ya existe en base de datos y debe ser un dato ùnico.")
+            dni == ""
         if dni != "":
             vendedor.Dni = dni
 
-        fechaNac = pedirFecha("Fecha de nacimiento (" + vendedor.FechaNacimiento.strftime("%d/%m/%Y") + "):")
+        if vendedor.FechaNacimiento == None:
+            textoFechaNac = "Sin Dato"
+        else:
+            textoFechaNac = vendedor.FechaNacimiento.strftime("%d/%m/%Y")
+
+        fechaNac = pedirFecha("Fecha de nacimiento (" + textoFechaNac + "):")
         if fechaNac != None:
             vendedor.FechaNacimiento = fechaNac
         
@@ -100,9 +109,10 @@ def menuModificarVendedor():
             vendedor.Cargo = cargo
 
         modificarVendedor(vendedor.Id, vendedor.Nombre, vendedor.Apellido, vendedor.Dni, vendedor.FechaNacimiento, vendedor.Cargo)
+        print("Vendedor Modificado:" + vendedor.verDatos())
 
 
-def menuElminarVendedor():
+def menuEliminarVendedor():
     idVendedor = pedirEntero("Ingrese Id: ")
     vendedor = traerVendedor(idVendedor)
     if vendedor is None:
