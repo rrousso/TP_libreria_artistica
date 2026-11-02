@@ -13,7 +13,7 @@ def clienteTieneVentas(pIdCliente):
 def vendedorTieneVentas(pIdVendedor):
     conn = conectar()
     cursor = conn.cursor()
-    cursor.execute("SELECT COUNT(*) FROM ventas WHERE dni = %s",(pIdVendedor,))
+    cursor.execute("SELECT COUNT(*) FROM ventas WHERE vendedor_id = %s",(pIdVendedor,))
     fila = cursor.fetchone()
     cursor.close()
     conn.close()

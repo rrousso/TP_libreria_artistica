@@ -74,7 +74,7 @@ def menuBuscarVendedores():
         print("\nLista de vendedores encontrados:")
         print("\nId - Nombre - Apellido - DNI - Fecha Nacimiento - Cargo")
         for ven in vendedores:
-                ven.verDatos()
+            ven.verDatos()
 
 def menuModificarVendedor():
     idVendedor = input("Ingrese Id de usuario a modificar: ")
@@ -90,9 +90,7 @@ def menuModificarVendedor():
         apellido = input("Apellido (" + vendedor.Apellido + "):")
         if apellido != "":
             vendedor.Apellido = apellido
-        
-        dni = pedirEntero("Dni (" + vendedor.Dni + "):")
-        
+
         dni = input("Dni (" + vendedor.Dni + "):")
         if dni != "" and dni != vendedor.Dni:
             if existeDniVendedor(dni):

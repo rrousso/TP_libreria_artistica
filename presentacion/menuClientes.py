@@ -38,6 +38,10 @@ def menuAgregarCliente():
     nombre = input("Ingrese el Nombre: ")
     apellido = input("Ingrese el Apellido: ")
     dni = input("Ingrese el Dni: ")
+    while existeDniCliente(dni):
+        print("\nEl DNI ya existe en la base de datos")
+        dni = input("Ingrese el Dni: ")
+
     fechaNac = pedirFecha("Ingrese fecha de nacimiento:")
     cliente = Cliente(None, nombre, apellido, dni, fechaNac, 0)
     guardarCliente(cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.FechaNacimiento)
@@ -69,7 +73,7 @@ def menuBuscarClientes():
         print("\nLista de Clientes encontrados:")
         print("\nId - Nombre - Apellido - DNI - Fecha Nacimiento - Puntos Acumulados")
         for cli in clientes:
-                cli.verDatos()
+            cli.verDatos()
 
 def menuModificarCliente():
     idCliente = input("Ingrese Id de usuario a modificar: ")
