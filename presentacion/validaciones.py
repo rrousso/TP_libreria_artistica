@@ -8,6 +8,16 @@ def pedirEntero(pMensaje):
         except ValueError:
             print("\nDebe ingresar un número.")
 
+def pedirEnteroOVacio(pMensaje):
+    while True:
+        texto = input(pMensaje)
+        if texto == "":
+            return None
+        try:
+            return int(texto)
+        except ValueError:
+            print("\nDebe ingresar un número.")            
+
 def pedirFecha(pMensaje):
     while True:
         texto = input(pMensaje + " (dd/mm/aaaa, Enter para omitir): ")
