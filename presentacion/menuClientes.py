@@ -65,8 +65,8 @@ def menuMostrarCliente():
         cliente.verDatos()
 
 def menuBuscarClientes():
-    idCliente = input("Ingrese Nombre, apellido o DNI a buscar: ")
-    clientes = buscarClientes(idCliente)
+    textoBusqueda = input("Ingrese Nombre, apellido o DNI a buscar: ")
+    clientes = buscarClientes(textoBusqueda)
     if len(clientes) == 0:
         print("\nNo se encontraron clientes.")
     else:
@@ -76,8 +76,8 @@ def menuBuscarClientes():
             cli.verDatos()
 
 def menuModificarCliente():
-    textoBusqueda = pedirEntero("Ingrese Id de usuario a modificar: ")
-    cliente = traerCliente(textoBusqueda)
+    idCliente = pedirEntero("Ingrese Id de usuario a modificar: ")
+    cliente = traerCliente(idCliente)
     if cliente is None:
         print("No existe un cliente con ese id.")
     else:
