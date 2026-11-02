@@ -83,15 +83,15 @@ def menuModificarVendedor():
         print("No existe un vendedor con ese id.")
     else:
         print("\nPresione Enter si no desea modificar el campo:")
-        nombre = input("Nombre (" + vendedor.Nombre + "):")
+        nombre = input("Nombre (" + vendedor.Nombre + "):").strip()
         if nombre != "":
             vendedor.Nombre = nombre
 
-        apellido = input("Apellido (" + vendedor.Apellido + "):")
+        apellido = input("Apellido (" + vendedor.Apellido + "):").strip()
         if apellido != "":
             vendedor.Apellido = apellido
 
-        dni = input("Dni (" + vendedor.Dni + "):")
+        dni = input("Dni (" + vendedor.Dni + "):").strip()
         if dni != "" and dni != vendedor.Dni:
             if existeDniVendedor(dni):
                 print("Ese DNI ya existe, no se modifica.")
@@ -107,7 +107,7 @@ def menuModificarVendedor():
         if fechaNac != None:
             vendedor.FechaNacimiento = fechaNac
         
-        cargo = input("Cargo (" + vendedor.Cargo + "):")
+        cargo = input("Cargo (" + vendedor.Cargo + "):").strip()
         if cargo != "":
             vendedor.Cargo = cargo
 

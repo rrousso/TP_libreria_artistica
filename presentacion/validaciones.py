@@ -1,4 +1,6 @@
 from datetime import datetime, date
+from decimal import Decimal, InvalidOperation
+
 
 def pedirTexto(pMensaje):
     while True:
@@ -7,13 +9,46 @@ def pedirTexto(pMensaje):
             return texto
         print("\nEl campo no puede estar vacío.")
 
+def pedirDecimal(pMensaje):
+    while True:
+        texto = input(pMensaje)
+        try:
+            valor = Decimal(texto.replace(",", "."))
+        except InvalidOperation:
+            print("\nDebe ingresar un número.")
+            continue
+        if valor < Decimal("0"):
+            print("\nEl número no puede ser negativo.")
+            continue
+        return valor  
+
+def pedirDecimalOVacio(pMensaje):
+    while True:
+        texto = input(pMensaje)
+        if texto == "":
+            return None
+        try:
+            valor = Decimal(texto.replace(",", "."))
+        except InvalidOperation:
+            print("\nDebe ingresar un número.")
+            continue
+        if valor < Decimal("0"):
+            print("\nEl número no puede ser negativo.")
+            continue
+        return valor  
+
 def pedirEntero(pMensaje):
     while True:
         texto = input(pMensaje)
         try:
-            return int(texto)
+            valor = int(texto)
         except ValueError:
             print("\nDebe ingresar un número.")
+            continue
+        if valor < 0:
+            print("\nEl número no puede ser negativo.")
+            continue
+        return valor  
 
 def pedirEnteroOVacio(pMensaje):
     while True:
@@ -21,10 +56,15 @@ def pedirEnteroOVacio(pMensaje):
         if texto == "":
             return None
         try:
-            return int(texto)
+            valor = int(texto)
         except ValueError:
-            print("\nDebe ingresar un número.")            
-
+            print("\nDebe ingresar un número.")
+            continue
+        if valor < 0:
+            print("\nEl número no puede ser negativo.")
+            continue
+        return valor  
+    
 def pedirFecha(pMensaje):
     while True:
         texto = input(pMensaje + " (dd/mm/aaaa, Enter para omitir): ")

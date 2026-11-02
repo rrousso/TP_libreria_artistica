@@ -9,8 +9,8 @@ class Producto:
         self.Precio = pPrecio
         self.Stock = pStock
     def verDatos(self):
-        print("Id: ",self.Id)
-        print("Descripcion: ",self.Descripcion)
-        print("Precio: ",self.Precio)
-        print("Stock: ",self.Stock)
+        print(str(self.Id) + " - " + self.Descripcion + " - " + self.Precio + " - " + self.Stock)
+
+    def verDatosCompletos(self):
+            print(str(self.Id) + " - " + self.Descripcion + " - " + self.Marca + " - " + self.Categoria + " - " + self.Presentacion + " - " + str(self.UnidadesPorPaquete) + " - " + str(self.Precio) + " - " + str(self.Stock))
         

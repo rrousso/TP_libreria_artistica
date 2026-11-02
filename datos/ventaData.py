@@ -18,3 +18,12 @@ def vendedorTieneVentas(pIdVendedor):
     cursor.close()
     conn.close()
     return fila[0] > 0
+
+def productoTieneVentas(pIdProducto):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM productos WHERE producto_id = %s",(pIdProducto,))
+    fila = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return fila[0] > 0

@@ -82,15 +82,15 @@ def menuModificarCliente():
         print("No existe un cliente con ese id.")
     else:
         print("\nPresione Enter si no desea modificar el campo:")
-        nombre = input("Nombre (" + cliente.Nombre + "):")
+        nombre = input("Nombre (" + cliente.Nombre + "):").strip()
         if nombre != "":
             cliente.Nombre = nombre
 
-        apellido = input("Apellido (" + cliente.Apellido + "):")
+        apellido = input("Apellido (" + cliente.Apellido + "):").strip()
         if apellido != "":
             cliente.Apellido = apellido
 
-        dni = input("Dni (" + cliente.Dni + "):")
+        dni = input("Dni (" + cliente.Dni + "):").strip()
         if dni != "" and dni != cliente.Dni:
             if existeDniCliente(dni):
                 print("Ese DNI ya existe, no se modifica.")
