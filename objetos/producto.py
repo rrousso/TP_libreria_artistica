@@ -12,5 +12,5 @@ class Producto:
         print(str(self.Id) + " - " + self.Descripcion + " - " + str(self.Precio) + " - " + str(self.Stock))
 
     def verDatosCompletos(self):
-            print(str(self.Id) + " - " + self.Descripcion + " - " + self.Marca + " - " + self.Categoria + " - " + self.Presentacion + " - " + str(self.UnidadesPorPaquete) + " - " + str(self.Precio) + " - " + str(self.Stock))
+        print(str(self.Id) + " - " + self.Descripcion + " - " + self.Marca + " - " + self.Categoria + " - " + self.Presentacion + " - " + str(self.UnidadesPorPaquete) + " - " + str(self.Precio) + " - " + str(self.Stock))
         

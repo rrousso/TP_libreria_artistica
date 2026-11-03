@@ -9,12 +9,16 @@ class Descuento:
         self.Tipo = pTipo
         self.Valor = pValor
     def verDatos(self):
-        print("Id: ",self.Id)
-        print("Descripcion: ",self.Descripcion)
-        print("Marca: ",self.Marca)
-        print("Categoria: ",self.Categoria)
-        print("Tipo: ",self.Tipo.name)
-        print("Valor: ",self.Valor)
+        if self.Marca is None:
+            agrupado = "categoría/" + self.Categoria
+        else:
+            agrupado = "marca/" + self.Marca
+
+        if self.Tipo == TipoDescuento.DOS_POR_UNO:
+            tipo = self.Tipo.name
+        else:
+            tipo = self.Tipo.name + ": " + str(self.Valor) + "%"
+        print(str(self.Id) + " - " + self.Descripcion + " - " + agrupado + " - " + tipo)
 
     def calcularMonto(self, pCantidad, pPrecioUnitario):
         montoADescontar = 0

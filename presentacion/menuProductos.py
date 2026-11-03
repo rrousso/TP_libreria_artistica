@@ -45,7 +45,7 @@ def menuAgregarProducto():
 
     producto = Producto(None, descripcion, marca, categoria, presentacion, unidades, precio, stock)
     guardarProducto(producto.Descripcion, producto.Marca, producto.Categoria, producto.Presentacion, producto.UnidadesPorPaquete, producto.Precio, producto.Stock)
-    print("Poducto guardado.")
+    print("Producto guardado.")
 
 def menuMostrarProductos():
     productos = traerProductos()
@@ -70,7 +70,7 @@ def menuBuscarProductos():
     if len(productos) == 0:
         print("\nNo se encontraron productos.")
     else:
-        print("\nLista de Clientes encontrados:")
+        print("\nLista de productos encontrados:")
         print("\nId - Descripción - Marca - Categoría - Presentación - Unidades - Precio - Stock")
         for pro in productos:
             pro.verDatosCompletos()

@@ -79,3 +79,40 @@ def pedirFecha(pMensaje):
             print("\nLa fecha no puede ser futura.")
             continue
         return fecha
+
+def elegirUnaOpcionDeDos(pMensaje, pOpcionUno, pOpcionDos):
+    while True:
+        print("\n" + pMensaje )
+        print("1. " + pOpcionUno)
+        print("2. " + pOpcionDos)
+        print("3. Volver")
+
+        opcion = input("Ingrese una opción (1-3): ")
+
+        if opcion == "1":
+            return True
+        elif opcion == "2":
+            return False
+        elif opcion == "3":
+            print("\nVolviendo a Menu Anterior")
+            return    
+        else:
+            print("\nOpción inválida")
+
+def pedirPorcentaje(pMensaje):
+    while True:
+        valor = pedirDecimal(pMensaje)
+        if valor > Decimal("100"):
+            print("\nEl número no puede superar 100.")
+            continue
+        return valor
+
+def pedirPorcentajeOVacio(pMensaje):
+    while True:
+        valor = pedirDecimalOVacio(pMensaje)
+        if valor is None:
+            return None
+        elif valor > Decimal("100"):
+            print("\nEl número no puede superar 100.")
+            continue
+        return valor
