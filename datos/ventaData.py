@@ -66,19 +66,24 @@ def traerVentaPorFactura(pId):
     conn.close()    
     return venta
 
-def traerVentaPorCliente(pDni):
+def traerVentasPorCliente(pDni):
     conn = conectar()
     cursor = conn.cursor()
     cursor.execute("SELECT id FROM clientes WHERE dni = %s",(pDni,))
     filaCliente = cursor.fetchone()
     if filaCliente is None:
+        cursor.close()
+        conn.close()   
         return None    
     cursor.execute("SELECT id, fecha, cliente_id, vendedor_id, subtotal, total FROM ventas WHERE cliente_id = %s",(filaCliente[0],))
-    fila = cursor.fetchone()
-    venta = armarVenta(cursor, fila)
+    filas = cursor.fetchall()
+    ventas = []
+    for fila in filas:
+        venta = armarVenta(cursor, fila)
+        ventas.append(venta)
     cursor.close()
     conn.close()    
-    return venta
+    return ventas
 
 def armarVenta(pCursor,pFila):
     if pFila is None:
