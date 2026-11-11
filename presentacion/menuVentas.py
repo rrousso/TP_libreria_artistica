@@ -2,7 +2,7 @@ from datetime import datetime
 
 from objetos.venta import Venta
 from objetos.detalleVenta import DetalleVenta
-from datos.ventaData import guardarVenta, traerVentas
+from datos.ventaData import guardarVenta, traerVentas, traerVentaPorFactura, traerVentaPorCliente
 from datos.vendedorData import traerVendedor
 from datos.clienteData import traerCliente
 from datos.productoData import traerProducto
@@ -95,16 +95,31 @@ def menuCrearVenta():
 
 def menuMostrarVentas():
     ventas = traerVentas()
-    print("\nLista de Ventas:")
-    for venta in ventas:
-        venta.verDatos()
-        print("****")
+    if len(ventas) == 0:
+            print("No hay ventas realizadas.")
+    else:
+        print("\nLista de Ventas:")
+        for venta in ventas:
+            venta.verDatos()
+            print("****")
 
 def menuBuscarVentaPorNro():
-    print("pendiente")
+    idVenta = pedirEntero("Ingrese nro de factura: ")
+    venta = traerVentaPorFactura(idVenta)
+    if venta is None:
+        print("\nNo hay ventas con ese nro de factura.")
+    else:
+        print("\nVentas nro " + str(idVenta) + ":")
+        venta.verDatos()
 
 def menuBuscarVentaPorCliente():
-    print("pendiente")
+    dniCliente = pedirEntero("Ingrese DNI de cliente: ")
+    venta = traerVentaPorCliente(dniCliente)
+    if venta is None:
+        print("\nNo hay ventas con ese DNI.")
+    else:
+        print("\nVentas nro " + str(venta.Id) + ":")
+        venta.verDatos()
 
 def menuEliminarVenta():
     print("pendiente")
