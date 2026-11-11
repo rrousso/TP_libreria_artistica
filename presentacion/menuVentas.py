@@ -2,7 +2,7 @@ from datetime import datetime
 
 from objetos.venta import Venta
 from objetos.detalleVenta import DetalleVenta
-from datos.ventaData import guardarVenta
+from datos.ventaData import guardarVenta, traerVentas
 from datos.vendedorData import traerVendedor
 from datos.clienteData import traerCliente
 from datos.productoData import traerProducto
@@ -94,7 +94,11 @@ def menuCrearVenta():
 
 
 def menuMostrarVentas():
-    print("pendiente")
+    ventas = traerVentas()
+    print("\nLista de Ventas:")
+    for venta in ventas:
+        venta.verDatos()
+        print("****")
 
 def menuBuscarVentaPorNro():
     print("pendiente")
