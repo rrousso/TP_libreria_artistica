@@ -141,4 +141,4 @@ def menuEliminarVenta():
         eliminarVentaPorFactura(idVenta)
         print("Venta Eliminada.")
     except Exception:
-            print("\nNo se pudo guardar la venta.")
+            print("\nNo se pudo eliminar la venta.")
