@@ -6,6 +6,7 @@ from presentacion.menuClientes import menuClientes
 from presentacion.menuVendedores import menuVendedores
 from presentacion.menuProductos import menuProductos
 from presentacion.menuDescuentos import menuDescuentos
+from presentacion.menuVentas import menuVentas
 
 def menu():
     while True:
@@ -28,7 +29,7 @@ def menu():
         elif opcion == "4":
             menuDescuentos()
         elif opcion == "5":
-            menuDescuentos()    
+            menuVentas()    
         elif opcion == "6":
             print("\nSaliendo de la aplicación")
             break
