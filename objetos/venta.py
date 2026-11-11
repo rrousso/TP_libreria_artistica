@@ -30,6 +30,6 @@ class Venta:
     def calcularTotal(self):
         total = 0
         for detalle in self.Detalles:
-            total += detalle.calcularSubtotal()
+            total += detalle.calcularTotal()
         return total
     
