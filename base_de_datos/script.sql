@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS detalle_ventas (
     precio_unitario DECIMAL(10,2) NOT NULL,
     descuento_aplicado DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (producto_id) REFERENCES productos(id),
-    FOREIGN KEY (venta_id) REFERENCES ventas(id)
+    FOREIGN KEY (venta_id) REFERENCES ventas(id) ON DELETE CASCADE
 );
 
 -- =========================================================

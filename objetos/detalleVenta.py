@@ -9,9 +9,9 @@ class DetalleVenta:
         print("Producto: ",self.Producto.Descripcion)
         print("Cantidad: ",self.Cantidad)
         print("PrecioUnitario: ",self.PrecioUnitario)
-        print("DescuentoAplicado: ",self.DescuentoAplicado)
+        print("DescuentoAplicado: ",self.s)
 
-    def calcularSubtotal(self):
+    def calcularTotal(self):
         return self.Cantidad * self.PrecioUnitario - self.DescuentoAplicado
 
     def aplicarMejorDescuento(self, pDescuentos):

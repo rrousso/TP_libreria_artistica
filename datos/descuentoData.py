@@ -24,6 +24,20 @@ def traerDescuentos():
         descuentos.append(descuento)
     return descuentos
 
+def traerDescuentosAplicables(pProducto):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, descripcion, marca, categoria, tipo, valor FROM descuentos WHERE marca = %s OR categoria = %s", (pProducto.Marca, pProducto.Categoria))
+    filas = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    descuentos = []
+    for fila in filas:
+        descuento = Descuento(fila[0], fila[1], fila[2], fila[3], TipoDescuento(fila[4]), fila[5])
+        descuentos.append(descuento)
+    return descuentos
+
 def traerDescuento(pIdDescuento):
     conn = conectar()
     cursor = conn.cursor()

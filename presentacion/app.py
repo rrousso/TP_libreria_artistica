@@ -14,6 +14,7 @@ def menu():
         print("2. Vendedores")
         print("3. Productos")
         print("4. Descuentos")
+        print("5. Ventas")
         print("6. Salir")
 
         opcion = input("Ingrese una opción (1-6): ")
@@ -26,6 +27,8 @@ def menu():
             menuProductos()
         elif opcion == "4":
             menuDescuentos()
+        elif opcion == "5":
+            menuDescuentos()    
         elif opcion == "6":
             print("\nSaliendo de la aplicación")
             break

@@ -1,8 +1,10 @@
 from decimal import Decimal
 
 from objetos.descuento import Descuento
+from objetos.detalleVenta import DetalleVenta
 from objetos.tipoDescuento import TipoDescuento
-from datos.descuentoData import guardarDescuento, traerDescuentos, traerDescuento, buscarDescuentos, modificarDescuento, eliminarDescuento
+from datos.productoData import traerProducto
+from datos.descuentoData import guardarDescuento, traerDescuentos, traerDescuento, buscarDescuentos, modificarDescuento, eliminarDescuento, traerDescuentosAplicables
 from presentacion.validaciones import pedirEntero, elegirUnaOpcionDeDos, pedirTexto, pedirPorcentaje, pedirPorcentajeOVacio
 
 def menuDescuentos():
@@ -12,11 +14,12 @@ def menuDescuentos():
         print("2. Ver todos los descuentos")
         print("3. Ver descuento por ID")
         print("4. Buscar descuento")
-        print("5. Modificar descuento")
-        print("6. Eliminar descuento")
-        print("7. Volver")
+        print("5. Simular descuento por producto")
+        print("6. Modificar descuento")
+        print("7. Eliminar descuento")
+        print("8. Volver")
 
-        opcion = input("Ingrese una opción (1-7): ")
+        opcion = input("Ingrese una opción (1-8): ")
 
         if opcion == "1":
             menuAgregarDescuento()
@@ -27,10 +30,12 @@ def menuDescuentos():
         elif opcion == "4":
             menuBuscarDescuentos()
         elif opcion == "5":
-            menuModificarDescuento()
+            menuSimularDescuento()
         elif opcion == "6":
-            menuEliminarDescuento()
+            menuModificarDescuento()
         elif opcion == "7":
+            menuEliminarDescuento()
+        elif opcion == "8":
             print("\nVolviendo a Menu Principal")
             break    
         else:
@@ -91,6 +96,19 @@ def menuBuscarDescuentos():
         print("\nId - Descripcion - Por - Tipo")
         for desc in descuentos:
             desc.verDatos()
+
+def menuSimularDescuento():
+    productoId = pedirEntero("Ingrese ID del producto para simular descuento: ")
+    producto = traerProducto(productoId)
+    if producto is None:
+        print("\nNo se encontró el producto.")
+    else:
+        descuentos = traerDescuentosAplicables(producto)
+        cantidad = pedirEntero("Ingrese cantidad del producto: ")
+        detalle = DetalleVenta(producto, cantidad, producto.Precio, 0)
+        detalle.aplicarMejorDescuento(descuentos)
+        print("\nTotal - Descuento aplicado - Total final")
+        print(f"{cantidad * producto.Precio:.2f} - {detalle.DescuentoAplicado:.2f} - {detalle.calcularTotal():.2f}")
 
 def menuModificarDescuento():
     idDescuento = pedirEntero("Ingrese Id de descuento a modificar: ")
