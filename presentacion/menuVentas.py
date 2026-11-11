@@ -2,12 +2,12 @@ from datetime import datetime
 
 from objetos.venta import Venta
 from objetos.detalleVenta import DetalleVenta
-from datos.ventaData import guardarVenta, traerVentas, traerVentaPorFactura, traerVentasPorCliente
+from datos.ventaData import guardarVenta, traerVentas, traerVentaPorFactura, traerVentasPorCliente,eliminarVentaPorFactura
 from datos.vendedorData import traerVendedor
 from datos.clienteData import traerCliente
 from datos.productoData import traerProducto
 from datos.descuentoData import traerDescuentosAplicables
-from presentacion.validaciones import pedirEntero, pedirFecha, pedirTexto
+from presentacion.validaciones import pedirEntero, pedirTexto
 
 def menuVentas():
     while True:
@@ -125,4 +125,20 @@ def menuBuscarVentasPorCliente():
             print("****")
 
 def menuEliminarVenta():
-    print("pendiente")
+    idVenta = pedirEntero("Ingrese nro de factura a eliminar: ")
+    venta = traerVentaPorFactura(idVenta)
+    if venta is None:
+        print("\nNo hay ventas con ese nro de factura.")
+        return
+    
+    print("\nResumen de la venta:")
+    venta.verDatos()
+    confirmar = input("\n¿Confirmar eliminar venta? (s/n): ").strip().lower()
+    if confirmar != "s":
+        print("No se eliminaron ventas.")
+        return
+    try:
+        eliminarVentaPorFactura(idVenta)
+        print("Venta Eliminada.")
+    except Exception:
+            print("\nNo se pudo guardar la venta.")

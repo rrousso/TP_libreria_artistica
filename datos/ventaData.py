@@ -113,3 +113,22 @@ def armarVenta(pCursor,pFila):
     venta.Subtotal = pFila[4]
     venta.Total = pFila[5]
     return venta
+
+def eliminarVentaPorFactura(pId):
+    conn = conectar()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT producto_id, cantidad FROM detalle_ventas WHERE venta_id = %s", (pId,))
+        filasDetalles = cursor.fetchall()        
+
+        for filaDetalle in filasDetalles:
+            cursor.execute("UPDATE productos set stock = stock + %s WHERE id = %s",(filaDetalle[1],filaDetalle[0]))
+
+        cursor.execute("DELETE FROM ventas where id = %s",(pId,))
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise    
+    finally:
+        cursor.close()
+        conn.close()
