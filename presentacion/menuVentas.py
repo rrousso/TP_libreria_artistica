@@ -109,7 +109,7 @@ def menuBuscarVentaPorNro():
     if venta is None:
         print("\nNo hay ventas con ese nro de factura.")
     else:
-        print("\nVentas nro " + str(idVenta) + ":")
+        print("\nVenta nro " + str(idVenta) + ":")
         venta.verDatos()
 
 def menuBuscarVentasPorCliente():
